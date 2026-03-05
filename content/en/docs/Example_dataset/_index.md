@@ -71,7 +71,7 @@ Elaeagnus_oldhamii_2.fastq.gz
 ```
 
 - **type2:** `pre-assembled sequences`      
-Two taxa with pre-assembled sequences are provided: *`Elaeagnus_pungens`*, and *`Hippophae_rhamnoides`* (corresponding to the taxon name along with theidentifier `B` provided in the sample list file `Sample_list.tsv`. Their FASTA files are named as `Elaeagnus_pungens.fasta` and `Hippophae_rhamnoides.fasta` respectively. (`<taxon>.fasta`)
+Two taxa with pre-assembled sequences are provided: *`Elaeagnus_pungens`*, and *`Hippophae_rhamnoides`* (corresponding to the taxon name along with the identifier `B` provided in the sample list file `Sample_list.tsv`. Their FASTA files are named as `Elaeagnus_pungens.fasta` and `Hippophae_rhamnoides.fasta` respectively. (`<taxon>.fasta`)
 
 > [!TIP] 
 > These two files are directly downloaded from [PAFTOL project](https://treeoflife.kew.org/tree-of-life/):      
