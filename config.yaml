@@ -13,3 +13,12 @@ module:
   hugoVersion:
     extended: true
     min: 0.110.0
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  offlineSearch: true

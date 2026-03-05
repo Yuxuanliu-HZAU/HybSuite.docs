@@ -1,0 +1,18 @@
+/* Plotly 图表样式 */
+.plotly {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.plotly .js-plotly-plot .plotly .modebar {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .plotly {
+        margin: 10px 0;
+    }
+}

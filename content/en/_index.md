@@ -1,69 +1,63 @@
 ---
-title: Goldydocs
+title: HybSuite
 ---
 
 <style>
+  /* Hide heading self links */
   .td-heading-self-link {
     display: none;
   }
+
+  /* Cover page title font control */
+  .td-cover-block h1,
+  .td-cover-block .display-1 {
+    font-family: Inter !important;
+    font-weight: 500 !important;
+    text-transform: none;
+  }
+  .td-cover-block p.lead {
+    font-size: 1.6rem;
+    font-family: Inter;
+    font-weight: 500;
+  }
+  .td-box--lightblue .td-lead-block {
+    color: orange;
+  }
 </style>
 
-{{< blocks/cover title="Welcome to Goldydocs: A Docsy Example Project!" image_anchor="top" height="full" >}}
-
+{{< blocks/cover title="HybSuite manual" height="full" >}}
+<div style="height: 8rem;"></div>
+<p class="lead mt-5">Author: Yuxuan Liu 刘宇轩</p>
+<p class="lead mt-5">Latest version: 1.1.7</p>
+<div style="height: 2rem;"></div>
 <a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/">
-  Learn More <i class="fas fa-arrow-alt-circle-right ms-2"></i>
+  Learn to use <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
-<a class="btn btn-lg btn-secondary me-3 mb-4" href="https://github.com/google/docsy-example">
-  Download <i class="fab fa-github ms-2 "></i>
+<a class="btn btn-lg btn-secondary me-3 mb-4" href="https://github.com/Yuxuanliu-HZAU/HybSuite">
+  Github page <i class="fab fa-github ms-2 "></i>
 </a>
-<p class="lead mt-5">Porridge temperature assessment &mdash; in the cloud!</p>
+<a class="btn btn-lg btn-success me-3 mb-4"
+   href="https://anaconda.org/channels/YuxuanLiu/packages/hybsuite/overview">
+  Install with conda <i class="fas fa-terminal ms-2"></i>
+</a>
 
-{{< blocks/link-down color="info" >}} {{< /blocks/cover >}}
+<div style="height: 2rem;"></div>
 
-{{% blocks/lead color="primary" %}}
+{{< blocks/link-down color="green" >}} {{< /blocks/cover >}}
 
-Goldydocs provides a single web UI providing visibility into porridge
-temperature, chair size, and bed softness metrics! You can even find out who's
-been eating **your** porridge.
+{{% blocks/lead color="green" %}}
 
-(Sadly, Goldydocs isn't a real project, but you can use this site as an example
-to create your own real websites with [Docsy](https://docsy.dev))
+**HybSuite**: An integrated pipeline for hybrid capture phylogenomics from reads to trees.
 
 {{% /blocks/lead %}}
 
 {{% blocks/section color="white" type="row" %}}
 
-{{% blocks/feature icon="fa-lightbulb" title="New chair metrics!" %}}
-
-The Goldydocs UI now shows chair size metrics by default.
-
-Please follow this space for updates!
-
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fab fa-github" title="Contributions welcome!" url="https://github.com/google/docsy-example" %}}
-
-We do a [Pull Request](https://github.com/google/docsy-example/pulls)
-contributions workflow on **GitHub**. New users are always welcome!
-
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fab fa-x-twitter" title="Follow us on X!" url="https://x.com/docsydocs" %}}
-
-For announcement of latest features etc.
-
-{{% /blocks/feature %}}
+  <!-- Contributions block (centered) -->
+  <div class="col-12 d-flex justify-content-center">
+    {{% blocks/feature icon="fab fa-github" title="Contributions are welcomed in our 'Pull Requests' region!" url="https://github.com/Yuxuanliu-HZAU/HybSuite/pulls" %}}
+    {{% /blocks/feature %}}
+  </div>
 
 {{% /blocks/section %}}
 
-{{% blocks/section type="row text-center" %}}
-
-# This is the second section
-
-{{% /blocks/section %}}
-
-{{% blocks/section type="row text-center" %}}
-
-# This is the another section with center alignment
-
-{{% /blocks/section %}}
