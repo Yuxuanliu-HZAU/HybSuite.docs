@@ -157,11 +157,11 @@ The heatmap uses color intensity to represent the number of recovered sequences:
 - For example, the following figure is the default output of our test dataset `Arabidopsis100`.     
 You can find it in `<output_dir>/02-All_paralogs/04-Filtered_paralog_reports_and_heatmap/Filtered_paralog_heatmap.png` after running HybSuite by following our guide. In the HybSuite stage 2 pipeline, this script was applied to generate the heatmaps for original paralogs and filtered paralogs and by default, `--show_values` is used to display the specific numbers of recovered sequences in each locus of each sample.      
 
-![](/HybSuite.docs/assets/static/images/test_dataset-paralog_heatmap_default.png)
+![](/images/test_dataset-paralog_heatmap_default.png)
 
 - When running this script manually, the recovered sequence counts won't display if you don't use the `--show_values` option.:
 
-![](/HybSuite.docs/assets/static/images/test_dataset-paralog_heatmap_no_value.png)
+![](/images/test_dataset-paralog_heatmap_no_value.png)
 
 - To clearly show the type of sequence in each locus of each sample, it is advisable to use `--add_markers` plus `--show_value` to add markers and numbers to the figure:
   - `X`: No sequences (0)
@@ -170,17 +170,17 @@ You can find it in `<output_dir>/02-All_paralogs/04-Filtered_paralog_reports_and
 ```
 python plot_paralog_heatmap.py ... -add_markers --show_value
 ```
-![](/HybSuite.docs/assets/static/images/test_dataset-paralog_heatmap_markers.png)
+![](/images/test_dataset-paralog_heatmap_markers.png)
 
 - Besides, you can also use `--color` to change a new color theme:
 ```
 python plot_paralog_heatmap.py ... --color red 
 ```
-![](/HybSuite.docs/assets/static/images/test_dataset-paralog_heatmap_red_color.png)
+![](/images/test_dataset-paralog_heatmap_red_color.png)
 ```
 python plot_paralog_heatmap.py ... --color blue 
 ```
-![](/HybSuite.docs/assets/static/images/test_dataset-paralog_heatmap_blue_color.png)
+![](/images/test_dataset-paralog_heatmap_blue_color.png)
 > **NOTE:** Our script only provides nine color themes, they are `black(default)`, `red`, `blue`, `purple`, `green`, `orange`, `yellow`, `brown` and `pink`.
 
 ### (7) Use cases
@@ -285,7 +285,7 @@ python plot_recovery_heatmap_v2.py -i . -r /path/to/Target_file_Angiosperms353.f
 
 **Then you can obtain an interactive heatmap HTML file `./recovery_heatmap.html`:**  
 
-{{< plotly json="/HybSuite.docs/assets/static/plotly/Original_recovery_heatmap.json" height="400px" width=50% >}}
+{{< plotly json="/plotly/Original_recovery_heatmap.json" height="400px" width=50% >}}
 
 - The blue bars along with x- and y-axes indicate how many loci are recovered in each sample and how many samples each locus are recovered in, respectively.  
 - The color intensity of each cell indicates the proportion of gene length recovered for a given sample (y-axis) at a specific target locus (x-axis). When multiple sequences are recovered for a locus within a sample (putative paralogs), only the longest sequence is retained for visualization in the heatmap.
@@ -666,7 +666,7 @@ Conflict/Signal Ratio: 0.3037
 - **Support for controlling node number label size:** use `--number_size <NUM>`
 - **Support for circular, cladogram, and phylogram display types:** use `--tree_type <circular|cladogram>` 
 
-![](/HybSuite.docs/assets/static/HybSuite.docs/assets/static/images/Github_wiki_page-modified_phypartspiecharts.png)
+![](/HybSuite.docs/assets/static/images/Github_wiki_page-modified_phypartspiecharts.png)
 
 
 ### (4) Full Options
