@@ -1,85 +1,68 @@
 {{ $jsonFile := .Get "json" }}
 {{ $height := .Get "height" | default "400px" }}
-
 {{ $uniqueId := printf "plotly-%s" (md5 $jsonFile) }}
 
-<div id="{{$uniqueId}}" class="plotly" style="height:{{$height}};">
+<div id="{{ $uniqueId }}" class="plotly" style="height:{{ $height }};">
     <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #666;">
         <div>Loading chart...</div>
     </div>
 </div>
 
 <script>
-function loadPlotlyChart() {
-    const chartElement = document.getElementById('{{$uniqueId}}');
-    
-    fetch('{{$jsonFile}}')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
-            return response.text();
-        })
-        .then(text => {
-            try {
-                const fig = JSON.parse(text);
-                if (typeof Plotly === 'undefined') {
-                    return loadPlotlyLibrary(() => {
-                        renderChart(chartElement, fig);
-                    });
-                }
-                
-                renderChart(chartElement, fig);
-            } catch (parseError) {
-                console.error('JSON Parse Error:', parseError);
-                console.error('First 100 chars:', text.substring(0, 100));
-                throw new Error('Invalid JSON format: ' + parseError.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error loading Plotly chart:', error);
-            chartElement.innerHTML = 
-                '<div style="text-align:center; padding:20px; color:red; font-family: monospace;">' +
-                '<div><strong>Chart Loading Error</strong></div>' +
-                '<div style="margin-top: 10px; font-size: 0.9em;">' + error.message + '</div>' +
-                '<div style="margin-top: 10px; font-size: 0.8em; color: #666;">File: {{$jsonFile}}</div>' +
-                '</div>';
-        });
-}
+(function() {
+    const chartElement = document.getElementById('{{ $uniqueId }}');
+    const jsonUrl = '{{ $jsonFile | relURL }}';  // 使用 relURL 处理子路径
 
-function loadPlotlyLibrary(callback) {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.plot.ly/plotly-latest.min.js';
-    script.onload = callback;
-    script.onerror = function() {
-        throw new Error('Failed to load Plotly library');
-    };
-    document.head.appendChild(script);
-}
-
-function renderChart(element, fig) {
-    try {
-        Plotly.newPlot(element.id, fig.data, fig.layout, {
-            responsive: true,
-            displayModeBar: true,
-            modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d'],
-            toImageButtonOptions: {
-                format: 'png',
-                filename: 'plotly_chart',
-                height: 800,
-                width: 1200,
-                scale: 1
-            }
+    async function loadPlotly() {
+        if (typeof Plotly !== 'undefined') return;
+        await new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.plot.ly/plotly-latest.min.js';
+            script.onload = resolve;
+            script.onerror = () => reject(new Error('Failed to load Plotly library'));
+            document.head.appendChild(script);
         });
-    } catch (renderError) {
-        console.error('Render Error:', renderError);
-        throw new Error('Failed to render chart: ' + renderError.message);
     }
-}
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadPlotlyChart);
-} else {
-    loadPlotlyChart();
-}
+    async function fetchJSON() {
+        const response = await fetch(jsonUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    }
+
+    async function init() {
+        try {
+            const [fig] = await Promise.all([fetchJSON(), loadPlotly()]);
+            Plotly.newPlot(chartElement.id, fig.data, fig.layout, {
+                responsive: true,
+                displayModeBar: true,
+                modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d'],
+                toImageButtonOptions: {
+                    format: 'png',
+                    filename: 'plotly_chart',
+                    height: 800,
+                    width: 1200,
+                    scale: 1
+                }
+            });
+        } catch (error) {
+            console.error('Chart error:', error);
+            chartElement.innerHTML = `
+                <div style="text-align:center; padding:20px; color:red; font-family: monospace;">
+                    <div><strong>Chart Loading Error</strong></div>
+                    <div style="margin-top: 10px; font-size: 0.9em;">${error.message}</div>
+                    <div style="margin-top: 10px; font-size: 0.8em; color: #666;">File: ${jsonUrl}</div>
+                </div>
+            `;
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
 </script>
