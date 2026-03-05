@@ -20,7 +20,7 @@ This page offers detailed introduction of HybSuite. Feel free to explore!
 <br>
 **The full pipeline is composed of 4 stages:**
 
-![HybSuite workflow](images/HybSuite-workflow.png) 
+![HybSuite workflow](/images/HybSuite-workflow.png) 
 
 - **Stage 1: NGS dataset construction**    
   - (1) Optionally download public raw reads from NCBI (via [SRA Toolkit](https://github.com/ncbi/sra-tools) );
