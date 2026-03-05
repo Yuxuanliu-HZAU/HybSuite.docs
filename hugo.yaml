@@ -1,4 +1,5 @@
 baseURL: https://Yuxuanliu-HZAU.github.io/HybSuite.docs/
+canonifyURLs: true
 title: HybSuite manual
 
 # cSpell:ignore goldmark github hugo readingtime docsy subdir lastmod pygments linenos catmullrom norsk gu
@@ -13,7 +14,6 @@ enableMissingTranslationPlaceholders: true
 # Static files configuration
 staticDir:
   - static
-  - assets/static
 
 enableRobotsTXT: true
 
