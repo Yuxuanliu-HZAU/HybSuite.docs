@@ -157,7 +157,9 @@ The heatmap uses color intensity to represent the number of recovered sequences:
 - For example, the following figure is the default output of our test dataset `Arabidopsis100`.     
 You can find it in `<output_dir>/02-All_paralogs/04-Filtered_paralog_reports_and_heatmap/Filtered_paralog_heatmap.png` after running HybSuite by following our guide. In the HybSuite stage 2 pipeline, this script was applied to generate the heatmaps for original paralogs and filtered paralogs and by default, `--show_values` is used to display the specific numbers of recovered sequences in each locus of each sample.      
 
-![test_dataset-paralog_heatmap_default](/images/test_dataset-paralog_heatmap_default.png)
+![HybSuite workflow](/images/HybSuite-workflow.png)
+
+![test_dataset-paralog_heatmap_default](/images/test_dataset-paralog_heatmap_default.png)  
 
 - When running this script manually, the recovered sequence counts won't display if you don't use the `--show_values` option.:
 
