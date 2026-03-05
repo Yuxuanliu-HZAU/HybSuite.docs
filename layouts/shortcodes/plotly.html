@@ -1,6 +1,7 @@
 {{ $jsonFile := .Get "json" }}
 {{ $height := .Get "height" | default "400px" }}
 {{ $uniqueId := printf "plotly-%s" (md5 $jsonFile) }}
+{{ $jsonUrl := $jsonFile | relURL }}
 
 <div id="{{ $uniqueId }}" class="plotly" style="height:{{ $height }};">
     <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #666;">
@@ -11,7 +12,7 @@
 <script>
 (function() {
     const chartElement = document.getElementById('{{ $uniqueId }}');
-    const jsonUrl = '{{ $jsonFile | relURL }}';  // 使用 relURL 处理子路径
+    const jsonUrl = '{{ $jsonUrl }}';
 
     async function loadPlotly() {
         if (typeof Plotly !== 'undefined') return;
@@ -35,25 +36,14 @@
     async function init() {
         try {
             const [fig] = await Promise.all([fetchJSON(), loadPlotly()]);
-            Plotly.newPlot(chartElement.id, fig.data, fig.layout, {
-                responsive: true,
-                displayModeBar: true,
-                modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d'],
-                toImageButtonOptions: {
-                    format: 'png',
-                    filename: 'plotly_chart',
-                    height: 800,
-                    width: 1200,
-                    scale: 1
-                }
-            });
+            Plotly.newPlot(chartElement.id, fig.data, fig.layout, { responsive: true });
         } catch (error) {
             console.error('Chart error:', error);
             chartElement.innerHTML = `
                 <div style="text-align:center; padding:20px; color:red; font-family: monospace;">
                     <div><strong>Chart Loading Error</strong></div>
                     <div style="margin-top: 10px; font-size: 0.9em;">${error.message}</div>
-                    <div style="margin-top: 10px; font-size: 0.8em; color: #666;">File: ${jsonUrl}</div>
+                    <div style="margin-top: 10px; font-size: 0.8em; color: #666;">Requested URL: ${jsonUrl}</div>
                 </div>
             `;
         }
