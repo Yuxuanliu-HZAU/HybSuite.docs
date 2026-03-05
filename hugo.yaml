@@ -12,8 +12,8 @@ enableMissingTranslationPlaceholders: true
 
 # Static files configuration
 staticDir:
-  - /static
-  - /assets/static
+  - static
+  - assets/static
 
 enableRobotsTXT: true
 
