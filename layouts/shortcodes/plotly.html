@@ -1,8 +1,23 @@
-{{ $json := .Get "json" }}
+{{ $jsonPath := .Get "json" }}
 {{ $height := .Get "height" | default "200px" }}
-<div id="{{$json}}" class="plotly" style="height:{{$height}}"></div>
+{{ $id := printf "plotly-%s" (md5 $jsonPath) | anchorize }}
+<div id="{{ $id }}" class="plotly" style="height:{{ $height }}"></div>
 <script>
-Plotly.json({{$json}}, function(err, fig) {
-    Plotly.plot('{{$json}}', fig.data, fig.layout, {responsive: true});
-});
+  (function() {
+    fetch('{{ $jsonPath | relURL }}')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('HTTP error ' + response.status);
+        }
+        return response.json();
+      })
+      .then(fig => {
+        if (typeof Plotly === 'undefined') {
+          console.error('Plotly is not loaded');
+          return;
+        }
+        Plotly.plot('{{ $id }}', fig.data, fig.layout, { responsive: true });
+      })
+      .catch(error => console.error('Error loading Plotly JSON:', error));
+  })();
 </script>
