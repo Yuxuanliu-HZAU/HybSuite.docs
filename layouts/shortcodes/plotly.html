@@ -1,4 +1,4 @@
-{{ $jsonFile := .Get "json" }}
+{{ $jsonFile := "https://yuxuanliu-hzau.github.io/HybSuite.docs/plotly/Original_recovery_heatmap.json" }}
 {{ $height := .Get "height" | default "400px" }}
 {{ $uniqueId := printf "plotly-%s" (md5 $jsonFile) }}
 {{ $jsonUrl := $jsonFile | relURL }}
