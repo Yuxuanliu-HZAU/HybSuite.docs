@@ -285,7 +285,7 @@ python plot_recovery_heatmap_v2.py -i . -r /path/to/Target_file_Angiosperms353.f
 
 **Then you can obtain an interactive heatmap HTML file `./recovery_heatmap.html`:**  
 
-{{< plotly json="/static/plotly/Original_recovery_heatmap.json" height="400px" >}}
+{{< plotly json="/plotly/Original_recovery_heatmap.json" height="400px" >}}
 
 - The blue bars along with x- and y-axes indicate how many loci are recovered in each sample and how many samples each locus are recovered in, respectively.  
 - The color intensity of each cell indicates the proportion of gene length recovered for a given sample (y-axis) at a specific target locus (x-axis). When multiple sequences are recovered for a locus within a sample (putative paralogs), only the longest sequence is retained for visualization in the heatmap.
