@@ -189,7 +189,7 @@ An interactive HTML file for visualizing target locus recovery across all origin
 - The blue bars along with x- and y-axes indicate how many loci are recovered in each sample and how many samples each locus are recovered in, respectively.  
 - The color intensity of each cell indicates the proportion of gene length recovered for a given sample (y-axis) at a specific target locus (x-axis). When multiple sequences are recovered for a locus within a sample (putative paralogs), only the longest sequence is retained for visualization in the heatmap.
 
-{{< plotly json="HybSuite.docs/assets/static/plotly/Original_recovery_heatmap.json" height="400px" width=50% >}}
+{{< plotly json="/HybSuite.docs/assets/static/plotly/Original_recovery_heatmap.json" height="400px" width=50% >}}
 
 Now, let's play with this interactive html file for fun and better effect!
 > - Choose the button **"Sort by"** as **"Descending"** to sort samples and loci on the heatmap from high to low recovery.
